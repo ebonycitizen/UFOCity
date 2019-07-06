@@ -18,6 +18,11 @@ public class Bullet : MonoBehaviour
         direction = (target.position - transform.position).normalized;
     }
 
+    public void Init(Vector3 vec)
+    {
+        direction = vec;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
