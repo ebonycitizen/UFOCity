@@ -1,18 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using HI5;
 
 public class ShotShip : MonoBehaviour
 {
     [SerializeField]
     private Grab grab;
-    [SerializeField]
-    private Transform forward;
 
     [SerializeField]
     private float lineLength = 5f;
     [SerializeField]
+    private float shotIntervalSec = 0.12f;
+
+    [SerializeField]
     private GameObject bulletPrefab;
+    [SerializeField]
+    private Transform bulletPos;
 
     private LineRenderer lineRenderer;
     private RaycastHit hit;
@@ -40,34 +44,49 @@ public class ShotShip : MonoBehaviour
     private void UpdateLine()
     {
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + forward.position.normalized * lineLength);
+        lineRenderer.SetPosition(1, transform.position + transform.forward * lineLength);
     }
 
-    private void Shot()
+    private void Shot(GameObject target)
     {
-        Instantiate(bulletPrefab, transform.position + forward.position, Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
+        bullet.GetComponent<Bullet>().Init(target.transform);
     }
 
     private GameObject AimTarget()
     {
-        bool isHit = Physics.Raycast(transform.position, forward.position.normalized, out hit, Mathf.Infinity, layerMask);
+        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask);
 
         if (isHit)
+        {
             return hit.collider.gameObject;
-
+        }
         return null;
     }
 
     private IEnumerator StartShot()
     {
-        while(true)
+        yield return new WaitForSeconds(1);
+
+        while (true)
         {
             GameObject target = AimTarget();
             if (target != null)
             {
-                Shot();
-                yield return new WaitForSeconds(0.05f);
+                Shot(target);
+                Vibrate();
+                yield return new WaitForSeconds(shotIntervalSec);
             }
+            yield return null;
         }
+    }
+
+    private void Vibrate()
+    {
+        int time = 50;
+        if (grab.gameObject.layer == 9)
+            HI5_Manager.EnableRightVibration(time);
+        if (grab.gameObject.layer == 10)
+            HI5_Manager.EnableLeftVibration(time);
     }
 }

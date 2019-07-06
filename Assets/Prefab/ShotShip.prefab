@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
   m_Children:
   - {fileID: 817230087}
-  - {fileID: 2392591625623109925}
+  - {fileID: 2553110821902129746}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
@@ -47,9 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grab: {fileID: 0}
-  forward: {fileID: 2392591625623109925}
   lineLength: 5
-  bulletPrefab: {fileID: 0}
+  shotIntervalSec: 0.12
+  bulletPrefab: {fileID: 1767489249257002834, guid: 04f54402d4e15fa4d8ecf65e2e8ba41b,
+    type: 3}
+  bulletPos: {fileID: 2553110821902129746}
 --- !u!120 &1441117872236850040
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -92,13 +94,13 @@ LineRenderer:
   - {x: -1, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.0054092407
+        value: 0.028938834
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -223,7 +225,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &3045653252836474497
+--- !u!1 &3124896785607855661
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -231,23 +233,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2392591625623109925}
+  - component: {fileID: 2553110821902129746}
   m_Layer: 0
-  m_Name: Forward
+  m_Name: BulletPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2392591625623109925
+--- !u!4 &2553110821902129746
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045653252836474497}
+  m_GameObject: {fileID: 3124896785607855661}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.02}
+  m_LocalPosition: {x: -0, y: 0, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 793738919}
