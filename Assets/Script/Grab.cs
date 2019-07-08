@@ -47,17 +47,12 @@ public class Grab : MonoBehaviour
         return forward;
     }
 
-    private LineRenderer line;
-
-
     // Start is called before the first frame update
     void Start()
     {
         fingers = new List<GameObject>();
         previousFingerCount = 0;
         previousPos = transform.position;
-
-        line = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -77,9 +72,6 @@ public class Grab : MonoBehaviour
         previousFingerCount = fingers.Count;
 
         forward = (palmForward.position - palmCenter.position).normalized;
-
-        //line.SetPosition(0, palmCenter.position);
-        //line.SetPosition(1, forward * 100f);
 
     }
     private void FixedUpdate()
