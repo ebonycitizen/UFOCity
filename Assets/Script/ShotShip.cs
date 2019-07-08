@@ -7,6 +7,8 @@ public class ShotShip : MonoBehaviour
 {
     [SerializeField]
     private Grab grab;
+    [SerializeField]
+    private Transform forward;
 
     [SerializeField]
     private float lineLength = 5f;
@@ -20,6 +22,7 @@ public class ShotShip : MonoBehaviour
 
     private LineRenderer lineRenderer;
     private RaycastHit hit;
+    private Vector3 direction;
 
     private int layerMask;//for enemy
 
@@ -28,6 +31,7 @@ public class ShotShip : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         layerMask = 1 << 11;
+        
     }
 
     void OnEnable()
@@ -38,13 +42,14 @@ public class ShotShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        direction = (forward.position - transform.position).normalized;
         UpdateLine();
     }
 
     private void UpdateLine()
     {
         lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + transform.forward * lineLength);
+        lineRenderer.SetPosition(1, transform.position + direction * lineLength);
     }
 
     private void Shot(GameObject target)
