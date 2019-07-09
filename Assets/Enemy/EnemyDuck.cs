@@ -10,16 +10,21 @@ public class EnemyDuck : MonoBehaviour
     private float rotio;
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private int maxHP;
+
+    private int hp;
 
     private void Awake()
     {
-
+        hp = maxHP;
     }
 
 
     private void Update()
     {
-
+        if (hp <= 0)
+            Destroy(gameObject);
     }
     private void FixedUpdate()
     {
@@ -41,5 +46,11 @@ public class EnemyDuck : MonoBehaviour
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, rotio);
         transform.position += transform.forward * Time.deltaTime * speed;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet")
+            hp--;
     }
 }

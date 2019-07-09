@@ -15,7 +15,11 @@ public class Abduction : MonoBehaviour
             return;
 
         foreach (GameObject p in people)
+        {
+            if (p == null)
+                continue;
             p.GetComponent<Rigidbody>().isKinematic = false;
+        }
 
         people.Clear();
     }
@@ -31,6 +35,8 @@ public class Abduction : MonoBehaviour
     {
         foreach (GameObject p in people)
         {
+            if (p == null)
+                continue;
             Vector3 velocity = (transform.position - p.transform.position).normalized * speed * Time.deltaTime;
             p.transform.position += velocity;
         }

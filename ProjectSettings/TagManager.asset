@@ -11,6 +11,7 @@ TagManager:
   - PalmTrigger
   - Transformer
   - People
+  - Bullet
   layers:
   - Default
   - TransparentFX

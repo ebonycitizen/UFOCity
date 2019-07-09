@@ -9,7 +9,7 @@ public class Chicken : MonoBehaviour
     void Start()
     {
         Sequence s = DOTween.Sequence();
-        s.Append(transform.DOShakeRotation(0.2f,50))
+        s.Append(transform.DOShakeRotation(0.2f,20))
             .SetLoops(-1);     
     }
 

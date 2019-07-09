@@ -17,15 +17,24 @@ public class EnemyMole : MonoBehaviour
     [SerializeField]
     private Transform bulletPos;
 
+    [SerializeField]
+    private int maxHP;
+
+    private int hp;
+
     // Start is called before the first frame update
     void Start()
     {
+        hp = maxHP;
         StartCoroutine("Shot");
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (hp <= 0)
+            Destroy(gameObject);
+
         if (target == null)
             return;
 
@@ -54,6 +63,9 @@ public class EnemyMole : MonoBehaviour
     {
         if (other.tag == "Player")
             target = other.transform;
+
+        if (other.tag == "Bullet")
+            hp--;
     }
     private void OnTriggerExit(Collider other)
     {
