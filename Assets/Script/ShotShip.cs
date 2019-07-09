@@ -20,18 +20,33 @@ public class ShotShip : MonoBehaviour
     [SerializeField]
     private Transform bulletPos;
 
+    [SerializeField]
+    private Transform handLeft;
+    [SerializeField]
+    private Transform handRight;
+    [SerializeField]
+    private Transform rotateLeft;
+    [SerializeField]
+    private Transform rotateRight;
+
     private LineRenderer lineRenderer;
     private RaycastHit hit;
     private Vector3 direction;
 
     private int layerMask;//for enemy
 
+    private Quaternion offset;
+    private Quaternion previous;
+    private Vector3 diff;
+
     // Start is called before the first frame update
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
         layerMask = 1 << 11;
-        
+
+        offset = Quaternion.Euler(0, -175, 0);
+        previous = transform.rotation;
     }
 
     void OnEnable()
@@ -44,6 +59,8 @@ public class ShotShip : MonoBehaviour
     {
         direction = (forward.position - transform.position).normalized;
         UpdateLine();
+        //UpdatePosition();
+        //UpdateRotation();
     }
 
     private void UpdateLine()
@@ -85,6 +102,27 @@ public class ShotShip : MonoBehaviour
             yield return null;
         }
     }
+
+    private void UpdatePosition()
+    {
+        Vector3 position = (handLeft.position + handRight.position) / 2;
+        transform.position = position;
+    }
+    private void UpdateRotation()
+    {
+        Quaternion combine = Quaternion.Lerp(rotateLeft.rotation, rotateRight.rotation, 0.5f);
+        Quaternion rot = combine * offset;
+
+        float magnitude = (rot.eulerAngles - previous.eulerAngles).magnitude;
+        if (magnitude > 345f && magnitude <= 360f)
+            transform.Rotate(diff);
+        else
+            transform.rotation = rot;
+
+        diff = transform.eulerAngles - previous.eulerAngles;
+        previous = transform.rotation;
+    }
+
 
     private void Vibrate()
     {

@@ -65,7 +65,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 1767489249257002834, guid: 2c852ac2728d8994b9137293993be3bb,
     type: 3}
   bulletPos: {fileID: 5993931404118414421}
-  maxHP: 10
+  maxHP: 5
 --- !u!1 &5993931403899592843
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,6 +227,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5993931403229464708}
     m_Modifications:
+    - target: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Name
+      value: mole_attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 498342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -283,18 +291,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.25000012
       objectReference: {fileID: 0}
-    - target: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Name
-      value: mole_attack
-      objectReference: {fileID: 0}
-    - target: {fileID: 198342, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 106780, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 198338, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
       propertyPath: m_Layer
       value: 11
@@ -303,31 +299,7 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 198336, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198330, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198334, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198326, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198324, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198328, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 198332, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+    - target: {fileID: 106780, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
@@ -351,6 +323,34 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 5993931403572142721}
+    - target: {fileID: 198336, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198326, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198330, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198334, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198324, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198328, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 198332, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe9bab289d42f0244859df1b1359454b, type: 3}
 --- !u!4 &5993931403572142727 stripped
