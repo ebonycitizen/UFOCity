@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class EnemyMole : EnemyBase
+public class EnemyPenguin : EnemyBase
 {
     [SerializeField]
-    private float speed=0.5f;
+    private float speed = 0.5f;
     [SerializeField]
     private Transform target;
 
@@ -17,9 +18,9 @@ public class EnemyMole : EnemyBase
     [SerializeField]
     private Transform bulletPos;
 
-    
+
     // Start is called before the first frame update
-   protected override void Start()
+    protected override void Start()
     {
         base.Start();
         StartCoroutine("Shot");
@@ -28,7 +29,7 @@ public class EnemyMole : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        
+
 
         if (target == null)
             return;
@@ -42,7 +43,7 @@ public class EnemyMole : EnemyBase
 
     IEnumerator Shot()
     {
-        while(true)
+        while (true)
         {
             if (target == null)
                 yield return null;
