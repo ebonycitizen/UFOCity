@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 
     public void Init(Vector3 vec)
     {
-        direction = vec;
+        direction = vec.normalized;
     }
 
     // Start is called before the first frame update

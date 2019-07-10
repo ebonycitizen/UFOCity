@@ -8,7 +8,7 @@ public class EnemyPenguin : EnemyBase
     [SerializeField]
     private float speed = 0.5f;
     [SerializeField]
-    private Transform target;
+    private Transform[] targets;
 
     [SerializeField]
     private float shotIntervalSec = 1;
@@ -30,27 +30,32 @@ public class EnemyPenguin : EnemyBase
     void Update()
     {
 
+        foreach (Transform target in targets)
+        {
+            if (target == null)
+                return;
 
-        if (target == null)
+            var relativePos = target.position - transform.position;
+            var rotation = Quaternion.LookRotation(relativePos);
+            transform.rotation =
+              Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
+
             return;
-
-        var relativePos = target.position - transform.position;
-        var rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation =
-          Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * speed);
-
+        }
     }
 
     IEnumerator Shot()
     {
         while (true)
         {
-            if (target == null)
-                yield return null;
+            foreach (Transform target in targets)
+            {
+                if (target == null)
+                    yield return null;
 
-            GameObject bullet = Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
-            bullet.GetComponent<Bullet>().Init(transform.forward);
-
+                GameObject bullet = Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
+                bullet.GetComponent<Bullet>().Init(target.position-transform.position);
+            }
             yield return new WaitForSeconds(shotIntervalSec);
         }
     }

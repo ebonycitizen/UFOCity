@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 1352805328}
   - component: {fileID: 1352805327}
   - component: {fileID: 1352805333}
-  m_Layer: 0
+  - component: {fileID: 2962867212188471930}
+  m_Layer: 12
   m_Name: Chicken
   m_TagString: People
   m_Icon: {fileID: 0}
@@ -114,7 +115,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!135 &1352805327
 SphereCollider:
@@ -125,7 +126,7 @@ SphereCollider:
   m_GameObject: {fileID: 1352805326}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.35838172
   m_Center: {x: 0.000000007450581, y: 0.36196527, z: 0.00050891936}
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14c750e6e4fc97d499ca103167bf7382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &2962867212188471930
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352805326}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.39519882, y: 0.64262784, z: 0.6100489}
+  m_Center: {x: -0.0060685477, y: 0.32489747, z: 0.00050892436}

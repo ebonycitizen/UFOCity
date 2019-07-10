@@ -28,8 +28,8 @@ public class AlienShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //UpdatePosition();
-        //UpdateRotation();
+        UpdatePosition();
+        UpdateRotation();
     }
 
     private void UpdatePosition()

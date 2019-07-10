@@ -129,7 +129,7 @@ public class ShotShip : MonoBehaviour
         if (grab == null)
             return;
 
-        int time = 50;
+        int time = 100;
         if (grab.gameObject.layer == 9)
             HI5_Manager.EnableRightVibration(time);
         if (grab.gameObject.layer == 10)

@@ -59,13 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3df9bc053d44fa948888cabe4cf27755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHP: 10
   speed: 2
   target: {fileID: 0}
   shotIntervalSec: 1
   bulletPrefab: {fileID: 1767489249257002834, guid: 2c852ac2728d8994b9137293993be3bb,
     type: 3}
   bulletPos: {fileID: 5993931404118414421}
-  maxHP: 5
 --- !u!1 &5993931403899592843
 GameObject:
   m_ObjectHideFlags: 0
