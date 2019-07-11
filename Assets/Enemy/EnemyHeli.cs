@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class EnemyHeli : EnemyBase
 {
@@ -25,25 +26,66 @@ public class EnemyHeli : EnemyBase
     private Vector3 center;
     private Vector3 prevPos;
 
+    private bool isDeath=false;
+
     private void OnDisable()
+    {
+        //Instantiate(explodeEffect, transform.position, Quaternion.identity);
+
+        //GameObject spawner = Instantiate(peopleSpawner, Vector3.zero, Quaternion.identity);
+        //PeopleSpawner p = spawner.GetComponent<PeopleSpawner>();
+        //p.SetUp(transform.position);
+    }
+
+    protected override void DeathEffect(GameObject obj)
     {
         Instantiate(explodeEffect, transform.position, Quaternion.identity);
 
         GameObject spawner = Instantiate(peopleSpawner, Vector3.zero, Quaternion.identity);
         PeopleSpawner p = spawner.GetComponent<PeopleSpawner>();
         p.SetUp(transform.position);
+
+        isDeath = true;
+        float distance = 100;
+
+        transform.DOMove(new Vector3(transform.position.x+ transform.right.x*distance, 0, transform.position.z+ transform.right.z * distance), 10);
+
+        transform.DOLocalRotate(new Vector3(10, transform.rotation.y + 1200, 30), 8.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+        //StartCoroutine("DeathMove");
     }
 
+    IEnumerator DeathMove()
+    {
+        Vector3 dir = (targetPosition.position - transform.position).normalized;
+        float speed=50;
+
+        while(true)
+        {
+            if (transform.position.y < 0)
+                break;
+
+            transform.position += dir * Time.deltaTime * speed;
+            yield return null;
+        }
+        yield return null;
+    }
+
+
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
         center = transform.position;
         prevPos = transform.position;
+
+        base.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isDeath)
+            return;
+
         Move();
 
         if (Input.GetKeyDown(KeyCode.Space))

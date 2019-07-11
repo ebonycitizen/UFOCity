@@ -40,7 +40,6 @@ public class EnemyBase : MonoBehaviour
                 DeathEffect(gameObject);
         }
     }
-
     protected virtual void DeathEffect(GameObject obj)
     {
         Destroy(obj);
