@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 using HI5;
 
 public class ShotShip : MonoBehaviour
@@ -72,7 +73,8 @@ public class ShotShip : MonoBehaviour
     private void Shot(GameObject target)
     {
         GameObject bullet = Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
-        bullet.GetComponent<Bullet>().Init(target.transform);
+        bullet.GetComponent<PlayerBullet>().Init(target.transform);
+        target.GetComponent<EnemyBase>().UpdateBulletLimit();
     }
 
     private GameObject AimTarget()
@@ -95,6 +97,7 @@ public class ShotShip : MonoBehaviour
             GameObject target = AimTarget();
             if (target != null)
             {
+
                 Shot(target);
                 Vibrate();
                 yield return new WaitForSeconds(shotIntervalSec);
@@ -129,7 +132,7 @@ public class ShotShip : MonoBehaviour
         if (grab == null)
             return;
 
-        int time = 100;
+        int time = 80;
         if (grab.gameObject.layer == 9)
             HI5_Manager.EnableRightVibration(time);
         if (grab.gameObject.layer == 10)
