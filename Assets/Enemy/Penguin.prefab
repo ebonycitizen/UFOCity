@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02c73dfd16024448b072ac9a1181b63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 20
+  maxHP: 15
   speed: 1
   targets: []
   shotIntervalSec: 0.5
