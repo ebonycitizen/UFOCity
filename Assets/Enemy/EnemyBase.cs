@@ -19,8 +19,12 @@ public class EnemyBase : MonoBehaviour
         if (other.tag == "Bullet")
         {
             hp--;
-            if (hp <= 0)
-                Destroy(gameObject);
+            if (hp == 0)
+                DeathEffect(gameObject);
         }
+    }
+    protected virtual void DeathEffect(GameObject obj)
+    {
+        Destroy(obj);
     }
 }
