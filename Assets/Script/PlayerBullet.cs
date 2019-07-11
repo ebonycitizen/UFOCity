@@ -24,7 +24,9 @@ public class PlayerBullet : MonoBehaviour
     void Start()
     {
         position = transform.position;
-        period = (target.position - transform.position).magnitude / speed;
+        var diff = target.transform.position - position;
+        transform.rotation = Quaternion.LookRotation(diff);
+        period = (target.position - transform.position).magnitude / 100;
     }
 
     // Update is called once per frame
@@ -52,5 +54,6 @@ public class PlayerBullet : MonoBehaviour
 
         position += velocity * Time.deltaTime;
         transform.position = position;
+        transform.rotation = Quaternion.LookRotation(diff);
     }
 }

@@ -20,6 +20,8 @@ public class ShotShip : MonoBehaviour
     private GameObject bulletPrefab;
     [SerializeField]
     private Transform bulletPos;
+    [SerializeField]
+    private ParticleSystem muzzleEffect;
 
     [SerializeField]
     private Transform handLeft;
@@ -75,6 +77,7 @@ public class ShotShip : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, bulletPos.position, Quaternion.identity);
         bullet.GetComponent<PlayerBullet>().Init(target.transform);
         target.GetComponent<EnemyBase>().UpdateBulletLimit();
+        muzzleEffect.Play();
     }
 
     private GameObject AimTarget()
@@ -97,7 +100,6 @@ public class ShotShip : MonoBehaviour
             GameObject target = AimTarget();
             if (target != null)
             {
-
                 Shot(target);
                 Vibrate();
                 yield return new WaitForSeconds(shotIntervalSec);
