@@ -23,6 +23,10 @@ public class EnemyHeli : EnemyBase
     [SerializeField]
     private GameObject peopleSpawner;
 
+    [SerializeField]
+    private GameObject fireEffect;
+
+
     private Vector3 center;
     private Vector3 prevPos;
 
@@ -45,13 +49,21 @@ public class EnemyHeli : EnemyBase
         PeopleSpawner p = spawner.GetComponent<PeopleSpawner>();
         p.SetUp(transform.position);
 
+        Instantiate(fireEffect, transform);
+
         isDeath = true;
         float distance = 100;
 
-        transform.DOMove(new Vector3(transform.position.x+ transform.right.x*distance, 0, transform.position.z+ transform.right.z * distance), 10);
+        transform.DOMove(new Vector3(transform.position.x + transform.right.x * distance, 0, transform.position.z + transform.right.z * distance), 10).OnComplete(() => DestroyObject());
 
         transform.DOLocalRotate(new Vector3(10, transform.rotation.y + 1200, 30), 8.5f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
         //StartCoroutine("DeathMove");
+    }
+
+    private void DestroyObject()
+    {
+        Instantiate(explodeEffect, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     IEnumerator DeathMove()
