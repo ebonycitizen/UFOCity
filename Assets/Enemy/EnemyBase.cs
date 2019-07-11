@@ -8,27 +8,10 @@ public class EnemyBase : MonoBehaviour
     private int maxHP;
 
     private int hp;
-    private int bulletLimit;
-
-    public void UpdateBulletLimit()
-    {
-        bulletLimit--;
-
-        if (bulletLimit == 0)
-            GetComponent<Collider>().enabled = false;
-    }
-
-    public void UpdateHp()
-    {
-        hp--;
-        if (hp <= 0)
-            DeathEffect(gameObject);
-    }
 
     protected virtual void Start()
     {
-        hp = maxHP;
-        bulletLimit = maxHP;
+         hp = maxHP;
     }
 
     protected void OnTriggerEnter(Collider other)
@@ -37,12 +20,7 @@ public class EnemyBase : MonoBehaviour
         {
             hp--;
             if (hp <= 0)
-                DeathEffect(gameObject);
+                Destroy(gameObject);
         }
-    }
-
-    protected virtual void DeathEffect(GameObject obj)
-    {
-        Destroy(obj);
     }
 }
