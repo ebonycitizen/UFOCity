@@ -32,7 +32,7 @@ Material:
     - _Exposure: 1
     - _FogBottom: 1
     - _FogEnd: 0.5
-    - _FogIntens: 0.995
+    - _FogIntens: 1
     - _FogStart: 0
     - _MieIntens: 0.935
     - _MieSize: 0
