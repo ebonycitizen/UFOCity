@@ -14,6 +14,8 @@ public class ShotShip : MonoBehaviour
     [SerializeField]
     private float lineLength = 5f;
     [SerializeField]
+    private Transform linePosition;
+    [SerializeField]
     private float shotIntervalSec = 0.12f;
 
     [SerializeField]
@@ -68,8 +70,12 @@ public class ShotShip : MonoBehaviour
 
     private void UpdateLine()
     {
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, transform.position + direction * lineLength);
+        //Vector3 start = new Vector3(transform.position.x, transform.position.y + lineY, transform.position.z);
+        //Vector3 end = new Vector3(transform.position.x, transform.position.y + lineY, transform.position.z) + direction * lineLength;
+
+
+        lineRenderer.SetPosition(0, linePosition.position);
+        lineRenderer.SetPosition(1, linePosition.position + direction * lineLength);
     }
 
     private void Shot(GameObject target)
@@ -82,7 +88,7 @@ public class ShotShip : MonoBehaviour
 
     private GameObject AimTarget()
     {
-        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, layerMask);
+        bool isHit = Physics.Raycast(transform.position, transform.forward, out hit, lineLength, layerMask);
 
         if (isHit)
         {
